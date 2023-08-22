@@ -1,0 +1,71 @@
+<header>
+  <div
+    class="header-user header-container-height top-header"
+    *ngIf="!isInAddMode; else addFriendMode"
+    [@fadeInLeftOnEnter]
+  >
+    <img
+      src="./assets/avatarPlaceholder.png"
+      alt=""
+      class="rounded-avatar"
+      style="align-self: center"
+    />
+    <div
+      style="
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+      "
+    >
+      <h1 class="username" *ngIf="currentUser$ | async as user">
+        {{ user.username }}
+      </h1>
+    </div>
+    <div
+      style="
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+      "
+    >
+      <ng-icon
+        name="ionAddCircleOutline"
+        size="25px"
+        (click)="toggleAddMode()"
+      ></ng-icon>
+    </div>
+  </div>
+  <ng-template #addFriendMode>
+    <div
+      [@fadeInLeftOnEnter]
+      class="header-container-height header-add-friend top-header"
+    >
+      <ng-icon
+        name="ionArrowBack"
+        size="25px"
+        (click)="toggleAddMode()"
+      ></ng-icon>
+      <input
+        type="text"
+        class="add-friend-input"
+        id="friendToAddName"
+        placeholder="Type in a username"
+        [formControl]="friendToAddName"
+        (keydown.enter)="submitAddFriendForm()"
+      />
+      <ng-icon
+        name="ionAddCircleOutline"
+        size="25px"
+        (click)="submitAddFriendForm()"
+        style="justify-self: flex-end"
+      ></ng-icon>
+    </div>
+  </ng-template>
+</header>
+<app-friendlist
+  (selectRecipientEvent)="this.selectFriendEvent.emit($event)"
+  [friends]="friends"
+  class="flex-column flex-take-all-space"
+></app-friendlist>

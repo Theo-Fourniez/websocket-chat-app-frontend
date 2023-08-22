@@ -1,0 +1,57 @@
+<h1>Login to Whatsapp</h1>
+<form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+  <label for="username">Username: </label>
+  <input id="username" type="text" formControlName="username" #username />
+  <label for="password">Password: </label>
+  <input id="password" type="password" formControlName="password" />
+  <button type="submit" [disabled]="isWaitingForServerResponse">Login</button>
+</form>
+
+<div class="alert">
+  <div *ngIf="formFieldHasError('username')">
+    Username errors :
+    <ul>
+      <li>
+        <span
+          *ngIf="formFieldHasErrorOfType('username', 'required')"
+          style="color: red"
+        >
+          Please enter username
+        </span>
+        <span
+          *ngIf="formFieldHasErrorOfType('username', 'minlength')"
+          style="color: red"
+        >
+          Username must be at least 4 characters long
+        </span>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="formFieldHasError('password')">
+    Password errors :
+    <ul>
+      <li>
+        <span
+          *ngIf="formFieldHasErrorOfType('password', 'required')"
+          style="color: red"
+        >
+          Please enter password
+        </span>
+        <span
+          *ngIf="formFieldHasErrorOfType('password', 'minlength')"
+          style="color: red"
+        >
+          Password must be at least 5 characters long
+        </span>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="submitted && loginFailed" style="color: red">
+    Login failed, please check your credentials and try again
+  </div>
+
+  <div *ngIf="submitted && serverError" style="color: red">
+    There was an error contacting the server, please try again later
+  </div>
+</div>

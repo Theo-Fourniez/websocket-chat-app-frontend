@@ -1,0 +1,89 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* The most outer container */
+.outer-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%; /* prevent overflow */
+  justify-content: center;
+  align-items: center;
+  background-color: #01a783; /* for debug color */
+}
+
+/* The inner container used to make it seem like there's a border around the app */
+.inner-container {
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  width: 97%;
+  height: 92%;
+  background-color: #ffffff;
+  min-height: 400px;
+}
+/* Remove the border when the screen width or height is small */
+@media screen and (max-width: 768px), screen and (max-height: 568px) {
+  .inner-container {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* The container that holds the friends list and the chat */
+.app-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.friends-pane-container {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-container {
+  width: 70%;
+  height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .friends-pane-container {
+    width: 100%;
+  }
+
+  .chat-container {
+    display: none;
+  }
+
+  .chat-container.friendSelected {
+    display: flex;
+    width: 100%;
+  }
+
+  .friends-pane-container.friendSelected {
+    display: none;
+  }
+}
+
+.no-friend-selected {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  height: 100%;
+  width: 100%;
+}
+
+.no-friend-selected h2 {
+  font-size: 1.35rem;
+  font-weight: normal;
+}

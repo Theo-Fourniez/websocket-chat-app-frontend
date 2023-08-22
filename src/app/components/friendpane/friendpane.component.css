@@ -1,0 +1,26 @@
+.header-user {
+  display: grid;
+  grid-template-columns: 1fr 2.5fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.username {
+  font-size: 1.2em;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+}
+
+ng-icon:hover {
+  cursor: pointer;
+}
+
+.header-add-friend {
+  display: grid;
+  grid-template-columns: 0.25fr 1fr 0.25fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  min-height: auto;
+  height: auto;
+}

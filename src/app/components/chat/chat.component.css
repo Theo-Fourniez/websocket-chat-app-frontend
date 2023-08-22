@@ -1,0 +1,51 @@
+.chat-input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background);
+  padding: 5px 2.5% 5px 2.5%;
+  flex-shrink: 0; /* Don't allow the input container to shrink */
+}
+
+@media screen and (max-width: 768px) {
+  .chat-input-container {
+    padding: 5px;
+  }
+
+}
+
+.chat-input-container > * {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.chat-input-container > input {
+  width: 90%;
+  height: 35px;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  padding-inline-start: 15px;
+}
+
+.chat-input-container > button {
+  width: 10%;
+  height: 35px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.chat-input-container > input:focus {
+  outline: none;
+}
+
+:host{
+  width: 100%;
+}
+
+header{
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0; /* Don't allow the header to shrink */
+}

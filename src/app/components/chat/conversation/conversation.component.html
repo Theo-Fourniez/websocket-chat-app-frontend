@@ -1,0 +1,10 @@
+<div
+  class="message-container"
+  [ngClass]="{
+    right: message.areYouTheSender,
+    left: !message.areYouTheSender
+  }"
+  *ngFor="let message of messages"
+>
+  <app-message [message]="message"></app-message>
+</div>

@@ -1,0 +1,21 @@
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px; /* Add spacing between messages */
+}
+
+.message-container.left {
+  align-items: flex-start; /* Align messages to the left */
+}
+
+.message-container.right {
+  align-items: flex-end; /* Align messages to the right */
+}
+
+:host{
+  display: flex;
+  flex-direction: column; 
+  overflow-y: auto; /* Add vertical scrollbar when messages overflow */
+  flex: 1; /* Take remaining space, pushing the chat input to the bottom */
+}

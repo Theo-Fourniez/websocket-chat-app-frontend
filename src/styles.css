@@ -1,0 +1,98 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+}
+
+:root {
+  font-family: "Segoe UI", Helvetica, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  font-size: calc(10px + 0.390625vw);
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --text: rgb(65, 82, 93);
+  --background: #f5f5f5;
+  --headers: #f0f2f5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+p {
+  color: var(--text);
+  margin: 0;
+}
+
+a {
+  color: var(--accent);
+}
+
+/* Firefox custom scrollbar (experimental) */
+.custom-scrollabar {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(189, 189, 189) var(--background);
+  overflow-y: scroll;
+}
+
+/* All other browsers custom scrollbar (non official)  */
+.custom-scrollabar::-webkit-scrollbar {
+  height: 6px !important;
+  width: 6px !important;
+}
+
+.custom-scrollabar::-webkit-scrollbar-track {
+  background-color: var(--background);
+}
+
+.custom-scrollabar::-webkit-scrollbar-thumb {
+  background-color: rgb(189, 189, 189);
+}
+
+.rounded-avatar {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.rounded-avatar-sm {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.flex-take-all-space {
+  flex: 1;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.top-header{
+  background-color: var(--headers);
+  padding: 10px;
+  height: 5vh;
+  min-height: 50px;
+}
+
+input{
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 1rem;
+  
+}
+
+input:focus{
+  outline: none;
+}

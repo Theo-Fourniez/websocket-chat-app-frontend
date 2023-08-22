@@ -1,0 +1,23 @@
+<div class="friendlist custom-scrollabar">
+  <span *ngIf="friends.length === 0"
+    >Start chatting by adding someone to your friendlist.</span
+  >
+  <div *ngIf="friends.length !== 0" class="friendlist__friends">
+    <div
+      *ngFor="let friend of friends"
+      class="friend-container"
+      (click)="this.selectRecipientEvent.emit(friend.username)"
+    >
+      <div class="friend">
+        <img
+          src="./assets/avatarPlaceholder.png"
+          alt=""
+          class="rounded-avatar-sm"
+        />
+        <span>
+          {{ friend.username }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

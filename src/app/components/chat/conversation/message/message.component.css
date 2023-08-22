@@ -1,0 +1,34 @@
+.message {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  display: inline-block;
+  max-width: 80%;
+  position: relative;
+  word-wrap: break-word;
+}
+
+.message__author {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.message__date {
+  font-size: 0.8rem;
+  color: #999;
+  margin-bottom: 5px;
+}
+
+.message__content {
+  font-size: 1rem;
+}
+
+.message.sent-by-me {
+  background-color: #dcf8c6; /* Green tone for messages sent by you */
+}
+
+.message.sent-by-them {
+  background-color: #ece5dd; /* Less green tone for messages sent by them */
+}

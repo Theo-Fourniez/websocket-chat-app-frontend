@@ -1,0 +1,50 @@
+<div class="outer-container">
+  <div class="inner-container" [@zoomInOnEnter]>
+    <div
+      class="app-container"
+      *ngIf="currentUser$ | async as user; else notLoggedIn"
+    >
+      <div
+        class="friends-pane-container"
+        [ngClass]="{ friendSelected: selectedRecipientName }"
+      >
+        <app-friendpane
+          [friends]="user.friends"
+          (selectFriendEvent)="selectRecipient($event)"
+          class="flex-column flex-take-all-space"
+        ></app-friendpane>
+      </div>
+      <div
+        class="chat-container flex-column"
+        [ngClass]="{ friendSelected: selectedRecipientName }"
+      >
+        <app-chat
+          class="flex-column"
+          style="height: 100%"
+          *ngIf="selectedRecipientName; else noFriendSelected"
+          [id]="selectedRecipientName"
+          [@fadeInRightOnEnter]
+          (deselectChatRecipientEvent)="deselectRecipient()"
+        ></app-chat>
+        <ng-template #noFriendSelected>
+          <div class="no-friend-selected">
+            <img
+              src="/assets/whatsAppPlaceholder.svg"
+              alt="A phone and a computer"
+            />
+            <h2 style="color: rgb(65, 82, 93)">WhatsApp Web</h2>
+            <p style="color: rgb(102, 119, 129); text-align: center">
+              Send and receive messages without having to keep your phone
+              connected.<br />
+              Use WhatsApp on your computer on a maximum of 1 device at the same
+              time.
+            </p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+    <ng-template #notLoggedIn>
+      <router-outlet style="padding: 15px"> </router-outlet>
+    </ng-template>
+  </div>
+</div>

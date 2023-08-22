@@ -1,0 +1,22 @@
+<header class="top-header" style="display: flex; flex-direction: row">
+  <ng-icon
+    (click)="deselectChatRecipient()"
+    name="ionArrowBack"
+    size="25px"
+  ></ng-icon>
+  <img src="./assets/avatarPlaceholder.png" alt="" class="rounded-avatar-sm" />
+  <p>{{ chatRecipient }}</p>
+</header>
+<app-conversation [messages]="messages" class="custom-scrollabar">
+</app-conversation>
+<div class="chat-input-container">
+  <input
+    id="name"
+    type="text"
+    [formControl]="messageInput"
+    placeholder="Enter a message"
+    autocomplete="off"
+    (keydown.enter)="sendMessage()"
+  />
+  <button (click)="sendMessage()">Send</button>
+</div>
