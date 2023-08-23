@@ -5,13 +5,8 @@
     'sent-by-them': !message.areYouTheSender
   }"
 >
-  <div class="message__user">
-    <div class="message__date">{{ message.createdAt | date: "short" }}</div>
-    <div class="message__author">
-      {{ message.areYouTheSender ? "You" : "Them" }}
-    </div>
-  </div>
   <div class="message__content">
     {{ message.content }}
   </div>
+  <div class="message__date">{{ message.createdAt | date: "h:mm a" }}</div>
 </div>

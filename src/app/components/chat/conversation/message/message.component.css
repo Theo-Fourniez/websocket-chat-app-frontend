@@ -3,7 +3,6 @@
   padding: 10px;
   border-radius: 10px;
   background-color: #f1f1f1;
-  border: 1px solid #ccc;
   display: inline-block;
   max-width: 80%;
   position: relative;
@@ -26,9 +25,9 @@
 }
 
 .message.sent-by-me {
-  background-color: #dcf8c6; /* Green tone for messages sent by you */
+  background-color: #d9fdd3; /* Green tone for messages sent by you */
 }
 
 .message.sent-by-them {
-  background-color: #ece5dd; /* Less green tone for messages sent by them */
+  background-color: var(--headers); /* Less green tone for messages sent by them */
 }
