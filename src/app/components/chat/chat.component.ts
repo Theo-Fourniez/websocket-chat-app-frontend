@@ -84,6 +84,7 @@ export class ChatComponent implements OnDestroy {
       createdAt: new Date(Date.now()),
       areYouTheSender: true,
     });
+    this.messageInput.setValue('');
   }
 
   isWebSocketConnected() {
