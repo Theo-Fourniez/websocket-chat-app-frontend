@@ -13,6 +13,8 @@ body {
   --text: rgb(65, 82, 93);
   --background: #f5f5f5;
   --headers: #f0f2f5;
+  --outer-background: #01a884;
+  --error-text: rgb(236, 66, 66);
 }
 
 h1,
@@ -95,4 +97,8 @@ input{
 
 input:focus{
   outline: none;
+}
+
+.error-message{
+  color: var(--error-text);
 }

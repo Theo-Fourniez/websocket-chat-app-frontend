@@ -14,7 +14,7 @@ body {
   max-width: 100%; /* prevent overflow */
   justify-content: center;
   align-items: center;
-  background-color: #01a783; /* for debug color */
+  background-color: var(--outer-background); /* for debug color */
 }
 
 /* The inner container used to make it seem like there's a border around the app */
@@ -23,7 +23,7 @@ body {
   display: flex;
   width: 97%;
   height: 92%;
-  background-color: #ffffff;
+  background-color: var(--background);
   min-height: 400px;
 }
 /* Remove the border when the screen width or height is small */
