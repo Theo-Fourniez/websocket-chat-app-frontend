@@ -32,6 +32,9 @@
 .chat-input-container > button {
   width: 10%;
   height: 35px;
+}
+
+.chat-input-container > button:nth-last-of-type(1){
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }

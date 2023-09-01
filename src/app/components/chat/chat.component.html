@@ -18,5 +18,18 @@
     autocomplete="off"
     (keydown.enter)="sendMessage()"
   />
+  <emoji-mart
+    (emojiClick)="selectEmoji($event)"
+    *ngIf="isEmojiMartOpened"
+    emoji=""
+    [emojiSize]="18"
+    [style]="{
+      position: 'absolute',
+      bottom: '15vh',
+      right: '10vw',
+      width: '35vw'
+    }"
+  ></emoji-mart>
+  <button (click)="toggleEmojiMart()" *ngIf="showEmojiMartButton">👍</button>
   <button (click)="sendMessage()">Send</button>
 </div>
