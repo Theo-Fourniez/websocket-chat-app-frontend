@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './routing/app-routing.module';
@@ -21,6 +21,7 @@ import { NgIconsModule } from '@ng-icons/core';
 import { ionAddCircleOutline, ionArrowBack } from '@ng-icons/ionicons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
+import { ServiceWorkerModule } from '@angular/service-worker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,10 @@ import { PickerComponent } from '@ctrl/ngx-emoji-mart';
     NgIconsModule.withIcons({ ionAddCircleOutline, ionArrowBack }),
     BrowserAnimationsModule,
     PickerComponent,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
   providers: [ChatService, CookieService, httpInterceptorProviders],
   bootstrap: [AppComponent],

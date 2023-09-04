@@ -6,7 +6,7 @@
     <div
       *ngFor="let friend of friends"
       class="friend-container"
-      (click)="this.selectRecipientEvent.emit(friend.username)"
+      (click)="this.selectRecipientEvent.emit(friend)"
     >
       <div class="friend">
         <img
