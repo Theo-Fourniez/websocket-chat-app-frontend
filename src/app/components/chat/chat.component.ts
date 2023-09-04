@@ -6,6 +6,8 @@ import {
   Output,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { EmojiEvent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import { DeviceDetectorService } from 'ngx-device-detector';
 import { Subscription } from 'rxjs';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { ChatService } from 'src/app/services/chat/chat.service';
@@ -22,15 +24,27 @@ export class ChatComponent implements OnDestroy {
   // TODO : connect the websocket on user login and disconnect on logout, the websocket should be a service
   ws: WebSocketSubject<any>;
 
+  // The bar where the user types his message
   messageInput = new FormControl('');
+  // The messages that are displayed in the conversation
   messages: ChatMessage[] = [];
+
+  // Whether the emoji mart is opened or not
+  isEmojiMartOpened = false;
+
+  // Show the emoji mart button only on desktop
+  showEmojiMartButton = false;
 
   chatRecipient = '';
 
   @Output() deselectChatRecipientEvent = new EventEmitter<true>();
 
-  constructor(private chatService: ChatService) {
+  constructor(
+    private chatService: ChatService,
+    private deviceService: DeviceDetectorService,
+  ) {
     this.ws = webSocket(environment.websocketsUrl);
+    this.showEmojiMartButton = !this.deviceService.isMobile();
   }
 
   ngOnDestroy() {
@@ -89,5 +103,14 @@ export class ChatComponent implements OnDestroy {
 
   isWebSocketConnected() {
     return !this.ws.closed;
+  }
+
+  toggleEmojiMart() {
+    this.isEmojiMartOpened = !this.isEmojiMartOpened;
+  }
+
+  selectEmoji(event: EmojiEvent) {
+    let message = this.messageInput.value ?? '';
+    this.messageInput.setValue(message + event.emoji.native!);
   }
 }

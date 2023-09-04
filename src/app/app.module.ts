@@ -20,6 +20,7 @@ import { FriendpaneComponent } from './components/friendpane/friendpane.componen
 import { NgIconsModule } from '@ng-icons/core';
 import { ionAddCircleOutline, ionArrowBack } from '@ng-icons/ionicons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     NgIconsModule.withIcons({ ionAddCircleOutline, ionArrowBack }),
     BrowserAnimationsModule,
+    PickerComponent,
   ],
   providers: [ChatService, CookieService, httpInterceptorProviders],
   bootstrap: [AppComponent],
