@@ -21,20 +21,24 @@ import { environment } from 'src/environments/environment.development';
   selector: 'app-chat',
 })
 export class ChatComponent implements OnDestroy {
-  // TODO : connect the websocket on user login and disconnect on logout, the websocket should be a service
+  // TODO : make the websocket connection a service so that it can be shared between components
   ws: WebSocketSubject<any>;
+  // The subscription to the websocket to prevent memory leaks when we change the chat recipient
+  currentSubscription: Subscription | undefined;
 
   // The bar where the user types his message
   messageInput = new FormControl('');
+
   // The messages that are displayed in the conversation
+  // TODO : make a global store for all the messages and use this array only for the current conversation
   messages: ChatMessage[] = [];
 
   // Whether the emoji mart is opened or not
   isEmojiMartOpened = false;
-
   // Show the emoji mart button only on desktop
   showEmojiMartButton = false;
 
+  // The username of the user we are currently chatting with
   chatRecipient = '';
 
   @Output() deselectChatRecipientEvent = new EventEmitter<true>();
@@ -63,7 +67,8 @@ export class ChatComponent implements OnDestroy {
       .subscribe((messages) => {
         this.messages = messages;
       });
-    this.connectToWebSocket();
+    if (this.currentSubscription) this.currentSubscription.unsubscribe();
+    this.currentSubscription = this.connectToWebSocket();
   }
 
   connectToWebSocket(): Subscription {
@@ -72,11 +77,15 @@ export class ChatComponent implements OnDestroy {
         if (msg.from === 'Server') {
           alert(msg.message);
         } else {
-          this.messages.push({
-            content: msg.message,
-            createdAt: new Date(Date.now()),
-            areYouTheSender: false,
-          });
+          if (msg.from === this.chatRecipient) {
+            this.messages.push({
+              content: msg.message,
+              createdAt: new Date(Date.now()),
+              areYouTheSender: false,
+            });
+          } else {
+            // TODO : add a notification to the friend pane
+          }
         }
       },
       error: (err) => console.log('websocket error : ', err),
