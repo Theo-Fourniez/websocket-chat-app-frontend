@@ -89,6 +89,10 @@ export class ChatComponent implements OnDestroy {
       to: this.chatRecipient,
       message: this.messageInput.value ?? '',
     };
+
+    if (message.message === '') {
+      return;
+    }
     console.log('Sending message: ', message);
 
     this.ws.next(message);
