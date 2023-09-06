@@ -49,17 +49,7 @@ export class AppComponent implements OnInit {
     private userService: UserService,
     private chatStore: ChatStore,
     private pushNotificationsService: PushNotificationsService,
-    private router: Router,
-  ) {
-    this.pushNotificationsService
-      .subscribeToPushNotifications()
-      .then((sub) => {
-        console.debug('Subscribed to push notifications !', sub);
-      })
-      .catch((err) => {
-        console.error('Could not subscribe to push notifications :(', err);
-      });
-  }
+  ) {}
   ngOnInit() {
     this.userService.tryAuthenticateWithCookie().subscribe({
       next: (user) => {
@@ -70,6 +60,7 @@ export class AppComponent implements OnInit {
         console.debug('Could not login with a session cookie :( ', err);
       },
     });
+    this.pushNotificationsService.subscribeToPushNotifications();
   }
 
   selectRecipient(selectedRecipient: Friend) {

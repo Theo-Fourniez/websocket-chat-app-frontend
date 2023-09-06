@@ -6,7 +6,7 @@
     >
       <div
         class="friends-pane-container"
-        [ngClass]="{ friendSelected: selectedRecipient$ }"
+        [ngClass]="{ friendSelected: selectedRecipient$ | async }"
       >
         <app-friendpane
           [friends]="user.friends"
@@ -16,7 +16,7 @@
       </div>
       <div
         class="chat-container flex-column"
-        [ngClass]="{ friendSelected: selectedRecipient$ }"
+        [ngClass]="{ friendSelected: selectedRecipient$ | async }"
       >
         <app-chat
           class="flex-column"
