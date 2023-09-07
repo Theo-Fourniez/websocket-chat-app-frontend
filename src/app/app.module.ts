@@ -44,7 +44,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     BrowserAnimationsModule,
     PickerComponent,
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
+      enabled: !isDevMode(), // make this true to test notifications (if the app reloads in a loop, just unregister the service worker in the browser)
       registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
