@@ -9,12 +9,14 @@ import {
 import { Observable, tap } from 'rxjs';
 import { UserService } from '../services/user/user.service';
 import { Router } from '@angular/router';
+import { UserStore } from '../stores/user.store';
 
 @Injectable()
 export class UnauthorizedInterceptor implements HttpInterceptor {
   constructor(
     private userService: UserService,
     private router: Router,
+    private userStore: UserStore,
   ) {}
 
   intercept(
@@ -25,7 +27,8 @@ export class UnauthorizedInterceptor implements HttpInterceptor {
       tap({
         error: (err: HttpErrorResponse) => {
           if (err.status === 401) {
-            if (err.url?.split('/').pop() !== 'user') {
+            let s = err.url?.split('/').pop();
+            if (s !== 'user' && s !== 'logout') {
               console.debug(
                 'UnauthorizedInterceptor: Redirecting to home because caught a 401 at ',
                 err.url,

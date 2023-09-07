@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AfterViewInit, Component, Renderer2 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { PushNotificationsService } from 'src/app/services/pushnotifications.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { UserStore } from 'src/app/stores/user.store';
 
@@ -15,6 +16,7 @@ export class LoginComponent implements AfterViewInit {
     private router: Router,
     private userStore: UserStore,
     private renderer: Renderer2,
+    private pushNotificationsService: PushNotificationsService,
   ) {}
 
   focusUsernameInput() {
@@ -61,7 +63,8 @@ export class LoginComponent implements AfterViewInit {
       .subscribe({
         next: (user) => {
           this.userStore.setUser(user);
-          this.router.navigate(['/chat/user']);
+          this.pushNotificationsService.subscribeToPushNotifications();
+          this.router.navigate(['']);
         },
         error: (error: HttpErrorResponse) => {
           if (error.status == 401) {

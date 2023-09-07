@@ -15,7 +15,7 @@ import { Friend } from 'src/app/types/Friend';
 })
 export class FriendlistComponent {
   @Input() friends: Friend[] = [];
-  @Output() selectRecipientEvent = new EventEmitter<string>();
+  @Output() selectRecipientEvent = new EventEmitter<Friend>();
 
   constructor() {}
 }

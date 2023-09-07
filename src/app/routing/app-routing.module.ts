@@ -12,12 +12,6 @@ const routes: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full' },
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
   { path: 'register', component: RegisterComponent, pathMatch: 'full' },
-  {
-    path: 'chat/:id',
-    component: ChatComponent,
-    pathMatch: 'full',
-    canActivate: [authenticationGuard],
-  },
   { path: '**', component: PageNotFoundComponent },
 ];
 

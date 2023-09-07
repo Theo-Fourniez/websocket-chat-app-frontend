@@ -27,7 +27,7 @@ import { fadeInLeftOnEnterAnimation } from 'angular-animations';
 })
 export class FriendpaneComponent {
   @Input() friends: Friend[] = [];
-  @Output() selectFriendEvent = new EventEmitter<string>();
+  @Output() selectFriendEvent = new EventEmitter<Friend>();
 
   currentUser$: Observable<User | null>;
 

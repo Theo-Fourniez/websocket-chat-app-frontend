@@ -13,6 +13,10 @@ import {
   fadeOutRightOnLeaveAnimation,
   zoomInOnEnterAnimation,
 } from 'angular-animations';
+import { PushNotificationsService } from './services/pushnotifications.service';
+import { Router } from '@angular/router';
+import { ChatStore } from './stores/chat.store';
+import { Friend } from './types/Friend';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -37,32 +41,33 @@ import {
   ],
 })
 export class AppComponent implements OnInit {
-  currentUser$: Observable<User | null>;
-  selectedRecipientName: string | null = null;
+  currentUser$: Observable<User | null> = this.userStore.getUser();
+  selectedRecipient$: Observable<Friend | null> = this.chatStore.getUser();
 
   constructor(
     private userStore: UserStore,
     private userService: UserService,
-  ) {
-    this.currentUser$ = userStore.getUser();
-  }
-  ngOnInit(): void {
+    private chatStore: ChatStore,
+    private pushNotificationsService: PushNotificationsService,
+  ) {}
+  ngOnInit() {
     this.userService.tryAuthenticateWithCookie().subscribe({
       next: (user) => {
-        console.log('Logged in with the session cookie :D !');
+        console.debug('Logged in with the session cookie :D !');
         this.userStore.setUser(user);
       },
       error: (err) => {
-        console.log('Could not login with a session cookie :( ', err);
+        console.debug('Could not login with a session cookie :( ', err);
       },
     });
+    this.pushNotificationsService.subscribeToPushNotifications();
   }
 
-  selectRecipient(selectedRecipientName: string) {
-    this.selectedRecipientName = selectedRecipientName;
+  selectRecipient(selectedRecipient: Friend) {
+    this.chatStore.selectChatRecipient(selectedRecipient);
   }
 
   deselectRecipient() {
-    this.selectedRecipientName = null;
+    this.chatStore.selectChatRecipient(null);
   }
 }
