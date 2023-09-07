@@ -16,3 +16,25 @@ button{
     gap: 2vh;
     text-align: center;
 }
+
+#buttons-container{
+    display: flex;
+    column-gap: 10px;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#whatsapp-logo{
+    height: auto; 
+    width: 4vw; 
+    min-width: 50px;
+}
+
+#title-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+}
