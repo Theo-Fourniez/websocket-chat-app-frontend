@@ -29,3 +29,10 @@ ul {
   width: 100%;
   padding: 5px;
 }
+
+#no-friends-text{
+  text-align: center;
+  font-size: 1.05rem;
+  color:rgb(102, 119, 129);
+  margin-top: 10px;
+}
