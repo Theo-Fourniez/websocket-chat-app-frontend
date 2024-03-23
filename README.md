@@ -1,7 +1,8 @@
-# WhatsApp Clone Frontend
-This project was made to learn Angular 16 and Spring boot 3. The goal was to create a app similar to WhatsApp Web. The app is responsive.
-
+# A WhatsApp web clone's Frontend
 ![The homepage of the app](./preview/homepage.png)
+
+You can find the backend here : https://github.com/Theo-Fourniez/websocket-chat-app .  
+This project was made to learn Angular 16 and Spring boot 3. The goal was to create a app similar to WhatsApp Web. The app is responsive.
 
 ## Functionality
 * Real time messaging (using websockets)
